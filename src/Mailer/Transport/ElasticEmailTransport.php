@@ -100,8 +100,6 @@ class ElasticEmailTransport extends AbstractTransport
      */
     public function isTransactional($value = true)
     {
-        debug('called');
-        debug($this->_emailParams);
         if ($value) {
             $this->_emailParams['isTransactional'] = true;
         } else {
@@ -171,6 +169,7 @@ class ElasticEmailTransport extends AbstractTransport
     {
         $http = new Client();
         $response = $http->post("{$this->_apiEndpoint}/email/send", $this->_emailParams);
+
         return $response->json;
     }
 
