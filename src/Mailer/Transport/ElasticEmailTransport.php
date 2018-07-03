@@ -180,7 +180,7 @@ class ElasticEmailTransport extends AbstractTransport
      * @param array $id ID of template
      * @return $this
      */
-    public function setTemplte($id = null)
+    public function setTemplate($id = null)
     {
         if (is_numeric($id)) {
             $this->_emailParams['template'] = $id;
