@@ -100,6 +100,16 @@ class ElasticEmailTransport extends AbstractTransport
     }
 
     /**
+     * Returns the email parameters for API request.
+     * 
+     * @return array
+     */
+    public function getEmailParams()
+    {
+        return $this->_emailParams;
+    }
+
+    /**
      * Marks email as whether transactional or not.
      *
      * Example
