@@ -163,6 +163,59 @@ class ElasticEmailTransport extends AbstractTransport
     }
 
     /**
+     * Sets template id
+     *
+     * This will set template to use in email. Template can be created
+     * in Elastic Email dashboard.
+     *
+     * Example
+     * ```
+     *  $email = new Email('elasticemail');
+     *  $emailInstance = $email->getTransport();
+     *  $emailInstance->setTemplte(123);
+     *
+     *  $email->send();
+     * ```
+     *
+     * @param array $id ID of template
+     * @return $this
+     */
+    public function setTemplte($id = null)
+    {
+        if (is_numeric($id)) {
+            $this->_emailParams['template'] = $id;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Sets number of minutes in the future this email should be sent
+     *
+     * Minutes can be up to 1 year i.e. 524160 minutes.
+     *
+     * Example
+     * ```
+     *  $email = new Email('elasticemail');
+     *  $emailInstance = $email->getTransport();
+     *  $emailInstance->setScheduleTime(60); // after 1 hour from sending time
+     *
+     *  $email->send();
+     * ```
+     *
+     * @param array $minutes Number of minutes
+     * @return $this
+     */
+    public function setScheduleTime($minutes = null)
+    {
+        if (is_numeric($minutes)) {
+            $this->_emailParams['timeOffSetMinutes'] = $minutes;
+        }
+
+        return $this;
+    }
+
+    /**
      * Prepares the from, to and sender email addresses
      *
      * @param \Cake\Mailer\Email $email Cake Email instance
