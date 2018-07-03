@@ -37,13 +37,26 @@ class ElasticEmailTransportTest extends TestCase
 
         $email = new Email();
         $email->setProfile(['transport' => 'elasticemail']);
-
         $emailInstance = $email->getTransport();
         $emailInstance->isTransactional(true);
-
         $emailParams = $emailInstance->getEmailParams();
         $this->assertArrayHasKey('isTransactional', $emailParams);
         $this->assertTrue($emailParams['isTransactional']);
+
+        $secondemail = new Email();
+        $secondemail->setProfile(['transport' => 'elasticemail']);
+        $secondemailInstance = $secondemail->getTransport();
+        $secondemailInstance->isTransactional(false);
+        $secondemailParams = $secondemailInstance->getEmailParams();
+        $this->assertArrayHasKey('isTransactional', $secondemailParams);
+        $this->assertFalse($secondemailParams['isTransactional']);
+
+        $thirdemail = new Email();
+        $thirdemail->setProfile(['transport' => 'elasticemail']);
+        $thirdemailInstance = $thirdemail->getTransport();
+
+        $thirdemailParams = $thirdemailInstance->getEmailParams();
+        $this->assertArrayNotHasKey('isTransactional', $thirdemailParams);
     }
 
     public function testTemplate()
@@ -131,7 +144,8 @@ class ElasticEmailTransportTest extends TestCase
 
         $email = new Email();
         $email->setProfile(['transport' => 'elasticemail']);
-        $email->setFrom(['from@example.com' => 'CakePHP Elastic Email'])
+        $email->setFrom('from@example.com')
+            ->setSender('from@example.com')
             ->setTo('to@example.com')
             ->setEmailFormat('both')
             ->setSubject('Email from CakePHP Elastic Email plugin')
@@ -152,6 +166,7 @@ class ElasticEmailTransportTest extends TestCase
         $email = new Email();
         $email->setProfile(['transport' => 'elasticemail']);
         $res = $email->setFrom(['from@example.com' => 'CakePHP Elastic Email'])
+            ->setSender(['from@example.com' => 'CakePHP Elastic Email'])
             ->setTo('to@example.com')
             ->setEmailFormat('both')
             ->setSubject('{title} - Email from CakePHP Elastic Email plugin')
