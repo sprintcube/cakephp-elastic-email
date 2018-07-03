@@ -9,7 +9,7 @@ sudo: false
 
 env:
   global:
-    - DEFAULT=0
+    - DEFAULT=1
 
 matrix:
   fast_finish: true
