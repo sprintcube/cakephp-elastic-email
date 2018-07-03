@@ -255,7 +255,6 @@ class ElasticEmailTransport extends AbstractTransport
      */
     protected function _sendEmail()
     {
-        debug($this->_emailParams);
         $http = new Client();
         $response = $http->post("{$this->_apiEndpoint}/email/send", $this->_emailParams);
 
