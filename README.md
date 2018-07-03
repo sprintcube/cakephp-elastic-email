@@ -25,11 +25,11 @@ composer require pnglabz/cakephp-elastic-email
 
 After installation, [Load the plugin](http://book.cakephp.org/3.0/en/plugins.html#loading-a-plugin)
 ```php
-Plugin::load('MailgunEmail');
+Plugin::load('ElasticEmail');
 ```
 Or, you can load the plugin using the shell command
 ```sh
-$ bin/cake plugin load MailgunEmail
+$ bin/cake plugin load ElasticEmail
 ```
 
 ## Setup
