@@ -12,8 +12,8 @@ This plugin provides email delivery using [Elastic Email](https://elasticemail.c
 
 This plugin has the following requirements:
 
-* CakePHP 3.4.0 or greater.
-* PHP 5.6 or greater.
+CakePHP 3.4.0 or greater.
+PHP 5.6 or greater.
 
 ## Installation
 
@@ -85,6 +85,61 @@ $email->setFrom(['you@yourdomain.com' => 'CakePHP Elastic Email'])
 ```
 
 That is it.
+
+## Advance Use
+You can also use few more options to send email via Elastic Email APIs. To do so, get the transport instance and call the appropriate methods before sending the email.
+
+### Transactional Email
+You can mark the email as `transaction` email.
+
+```php
+$email = new Email('elasticemail');
+$emailInstance = $email->getTransport();
+$emailInstance->isTransactional(true);
+$email->send();
+```
+
+### Template
+You can use the template created in Elastic Email backend. Get the template id by either using their API or from the URL.
+Set the template id using `setTemplate` method.
+
+```php
+$email = new Email('elasticemail');
+$emailInstance = $email->getTransport();
+$emailInstance->setTemplte(123);
+$email->send();
+```
+
+### Template Variables
+Elastic Email provides a nice way to replace the template content using template variables. You can use variables like {firstname}, {lastname} in your template and pass their replacement value.
+
+```php
+$mergeVars = [
+    'firstname' => 'Foo',
+    'lastname' => 'Bar',
+    'title' => 'Good Title'
+];
+
+$email = new Email('elasticemail');
+$emailInstance = $email->getTransport();
+$emailInstance->setMergeVariables($mergeVars);
+
+$email->setFrom(['from@example.com' => 'CakePHP Elastic Email'])
+    ->setTo('to@example.com')
+    ->setEmailFormat('both')
+    ->setSubject('{title} - Email from CakePHP Elastic Email plugin')
+    ->send('Hello {firstname} {lastname}, <br> This is an email from CakePHP Elastic Email plugin.');
+```
+
+### Schedule
+You can schedule the email to be sent in future date. You can set upto 1 year in future i.e. 524160 minutes.
+
+```php
+$email = new Email('elasticemail');
+$emailInstance = $email->getTransport();
+$emailInstance->setScheduleTime(60); // after 1 hour from sending time
+$email->send();
+```
 
 ## Reporting Issues
 
