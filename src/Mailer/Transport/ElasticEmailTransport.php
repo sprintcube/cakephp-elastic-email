@@ -101,7 +101,7 @@ class ElasticEmailTransport extends AbstractTransport
 
     /**
      * Returns the email parameters for API request.
-     * 
+     *
      * @return array
      */
     public function getEmailParams()

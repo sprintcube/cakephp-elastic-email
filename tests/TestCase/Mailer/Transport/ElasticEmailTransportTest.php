@@ -128,7 +128,7 @@ class ElasticEmailTransportTest extends TestCase
                 'apiKey' => ''
             ]
         );
-        
+
         $email = new Email();
         $email->setProfile(['transport' => 'elasticemail']);
         $email->setFrom(['from@example.com' => 'CakePHP Elastic Email'])
