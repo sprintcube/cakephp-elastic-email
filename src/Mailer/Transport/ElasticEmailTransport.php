@@ -234,11 +234,11 @@ class ElasticEmailTransport extends AbstractTransport
     protected function _prepareEmailAddresses(Email $email)
     {
         $from = $email->getFrom();
-        if (is_array($from)) {
+        if (key($from) != $from[key($from)]) {
             $this->_emailParams['from'] = key($from);
             $this->_emailParams['fromName'] = $from[key($from)];
         } else {
-            $this->_emailParams['from'] = $from;
+            $this->_emailParams['from'] = key($from);
         }
 
         $this->_emailParams['to'] = '';
@@ -249,11 +249,11 @@ class ElasticEmailTransport extends AbstractTransport
 
         $sender = $email->getSender();
         if (!empty($sender)) {
-            if (is_array($sender)) {
+            if (key($sender) != $sender[key($sender)]) {
                 $this->_emailParams['sender'] = key($sender);
                 $this->_emailParams['senderName'] = $sender[key($sender)];
             } else {
-                $this->_emailParams['sender'] = $sender;
+                $this->_emailParams['sender'] = key($sender);
             }
         }
     }
