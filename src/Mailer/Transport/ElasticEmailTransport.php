@@ -59,7 +59,7 @@ class ElasticEmailTransport extends AbstractTransport
      * Send mail
      *
      * @param \Cake\Mailer\Email $email Cake Email
-     * @return mixed
+     * @return array An array with api response and email parameters
      */
     public function send(Email $email)
     {
@@ -67,7 +67,6 @@ class ElasticEmailTransport extends AbstractTransport
             throw new MissingElasticEmailApiKeyException(['Api Key']);
         }
 
-        $this->_reset();
         $this->_emailParams['apikey'] = $this->getConfig('apiKey');
 
         $this->_prepareEmailAddresses($email);
@@ -89,14 +88,30 @@ class ElasticEmailTransport extends AbstractTransport
             }
         }
 
-        return $this->_sendEmail();
+        $apiRsponse = $this->_sendEmail();
+        $res = [
+            'apiResponse' => $apiRsponse,
+            'emailParams' => $this->_emailParams
+        ];
+
+        $this->_reset();
+
+        return $res;
     }
 
     /**
-     * Marks email as either transactional or marketing type.
+     * Marks email as whether transactional or not.
+     *
+     * Example
+     * ```
+     * $email = new Email('elasticemail');
+     * $emailInstance = $email->getTransport();
+     * $emailInstance->isTransactional(true);
+     * $email->send();
+     * ```
      *
      * @param bool $value Either true or false
-     * @return void
+     * @return $this
      */
     public function isTransactional($value = true)
     {
@@ -105,6 +120,8 @@ class ElasticEmailTransport extends AbstractTransport
         } else {
             $this->_emailParams['isTransactional'] = false;
         }
+
+        return $this;
     }
 
     /**
@@ -112,19 +129,37 @@ class ElasticEmailTransport extends AbstractTransport
      *
      * These variables are used to merge data with template.
      *
-     * @return bool
+     * Example
+     * ```
+     * $mergeVars = [
+     *     'firstname' => 'Foo',
+     *     'lastname' => 'Bar',
+     *     'title' => 'Good Title'
+     * ];
+     *
+     *  $email = new Email('elasticemail');
+     *  $emailInstance = $email->getTransport();
+     *  $emailInstance->setMergeVariables($mergeVars);
+     * 
+     *  $email->setFrom(['from@example.com' => 'CakePHP Elastic Email'])
+     *     ->setTo('to@example.com')
+     *     ->setEmailFormat('both')
+     *     ->setSubject('{title} - Email from CakePHP Elastic Email plugin')
+     *     ->send('Hello {firstname} {lastname}, <br> This is an email from CakePHP Elastic Email plugin.');
+     * ```
+     *
+     * @param array $mergeVars Array of template variables
+     * @return $this
      */
     public function setMergeVariables($mergeVars = [])
     {
-        if (empty($mergeVars)) {
-            return false;
+        if (!empty($mergeVars)) {
+            foreach ($mergeVars as $field => $value) {
+                $this->_emailParams['merge_' . $field] = $value;
+            }
         }
 
-        foreach ($mergeVars as $field => $value) {
-            $this->_emailParams['merge_' . $field] = $value;
-        }
-
-        return true;
+        return $this;
     }
 
     /**
@@ -167,6 +202,7 @@ class ElasticEmailTransport extends AbstractTransport
      */
     protected function _sendEmail()
     {
+        debug($this->_emailParams);
         $http = new Client();
         $response = $http->post("{$this->_apiEndpoint}/email/send", $this->_emailParams);
 
