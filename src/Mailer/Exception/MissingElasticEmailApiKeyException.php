@@ -26,5 +26,4 @@ class MissingElasticEmailApiKeyException extends Exception
      * {@inheritDoc}
      */
     protected $_messageTemplate = '%s for Elastic Email could not be found.';
-
 }

@@ -43,14 +43,14 @@ class ElasticEmailTransport extends AbstractTransport
 
     /**
      * API Endpoint URL
-     * 
+     *
      * @var string
      */
     protected $_apiEndpoint = 'https://api.elasticemail.com/v2';
 
     /**
      * Prefix for setting custom headers
-     * 
+     *
      * @var string
      */
     protected $_customHeaderPrefix = 'X-';
@@ -59,7 +59,6 @@ class ElasticEmailTransport extends AbstractTransport
      * Send mail
      *
      * @param \Cake\Mailer\Email $email Cake Email
-     *
      * @return mixed
      */
     public function send(Email $email)
@@ -97,7 +96,6 @@ class ElasticEmailTransport extends AbstractTransport
      * Marks email as either transactional or marketing type.
      *
      * @param bool $value Either true or false
-     *
      * @return void
      */
     public function isTransactional($value = true)
@@ -113,9 +111,9 @@ class ElasticEmailTransport extends AbstractTransport
 
     /**
      * Sets merge variables
-     * 
+     *
      * These variables are used to merge data with template.
-     * 
+     *
      * @return bool
      */
     public function setMergeVariables($mergeVars = [])
@@ -166,7 +164,7 @@ class ElasticEmailTransport extends AbstractTransport
 
     /**
      * Make an API request to send email
-     * 
+     *
      * @return mixed JSON Response from Elastic Email API
      */
     protected function _sendEmail()
