@@ -140,7 +140,7 @@ class ElasticEmailTransport extends AbstractTransport
      *  $email = new Email('elasticemail');
      *  $emailInstance = $email->getTransport();
      *  $emailInstance->setMergeVariables($mergeVars);
-     * 
+     *
      *  $email->setFrom(['from@example.com' => 'CakePHP Elastic Email'])
      *     ->setTo('to@example.com')
      *     ->setEmailFormat('both')
