@@ -1,7 +1,6 @@
 # Elastic Email Plugin for CakePHP 3
 
 [![Build Status](https://travis-ci.org/pnglabz/cakephp-elastic-email.svg?branch=master)](https://travis-ci.org/pnglabz/cakephp-elastic-email)
-[![codecov.io](https://codecov.io/github/pnglabz/cakephp-elastic-email/coverage.svg?branch=master)](https://codecov.io/github/pnglabz/cakephp-elastic-email?branch=master)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Latest Stable Version](https://poser.pugx.org/pnglabz/cakephp-elastic-email/v/stable)](https://packagist.org/packages/pnglabz/cakephp-elastic-email)
 [![Total Downloads](https://poser.pugx.org/pnglabz/cakephp-elastic-email/downloads)](https://packagist.org/packages/pnglabz/cakephp-elastic-email)
