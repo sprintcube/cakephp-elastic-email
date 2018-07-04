@@ -88,6 +88,13 @@ class ElasticEmailTransport extends AbstractTransport
             }
         }
 
+        $attachments = $email->getAttachments();
+        if (!empty($attachments)) {
+            foreach ($attachments as $name => $file) {
+                $this->_emailParams['files_' . Text::slug(strtolower($name), '')] = fopen($file['file'], 'r');
+            }
+        }
+
         $apiRsponse = $this->_sendEmail();
         $res = [
             'apiResponse' => $apiRsponse,
