@@ -12,8 +12,8 @@ This plugin provides email delivery using [Elastic Email](https://elasticemail.c
 
 This plugin has the following requirements:
 
-CakePHP 3.4.0 or greater.
-PHP 5.6 or greater.
+* CakePHP 3.4.0 or greater.
+* PHP 5.6 or greater.
 
 ## Installation
 
