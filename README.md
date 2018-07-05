@@ -90,7 +90,7 @@ That is it.
 You can also use few more options to send email via Elastic Email APIs. To do so, get the transport instance and call the appropriate methods before sending the email.
 
 ### Transactional Email
-You can mark the email as `transaction` email.
+You can mark the email as `transactional` email.
 
 ```php
 $email = new Email('elasticemail');
@@ -98,6 +98,47 @@ $emailInstance = $email->getTransport();
 $emailInstance->isTransactional(true);
 $email->send();
 ```
+
+### Custom Headers
+You can pass your own headers. It must be prefixed with "X-". Use the default `Email::setHeaders` method like,
+
+```php
+$email = new Email('elasticemail');
+        
+$email->setFrom(['you@yourdomain.com' => 'CakePHP Elastic Email'])
+    ->setSender('someone@example.com', 'Someone')
+    ->setTo('foo@example.com.com')
+    ->addTo('bar@example.com')
+    ->setHeaders([
+        'X-Custom' => 'headervalue',
+        'X-MyHeader' => 'myvalue'
+    ])
+    ->setSubject('Email from CakePHP Elastic Email plugin')
+    ->send('Message from CakePHP Elastic Email plugin');
+```
+
+> Make sure you have enabled custom header from your Elastic Email settings.
+
+### Attachments
+Set your attachments using `Email::setAttachments` method.
+
+```php
+$email = new Email('elasticemail');
+        
+$email->setFrom(['you@yourdomain.com' => 'CakePHP Elastic Email'])
+    ->setSender('someone@example.com', 'Someone')
+    ->setTo('foo@example.com.com')
+    ->addTo('bar@example.com')
+    ->setAttachments([
+        'cake_icon1.png' => Configure::read('App.imageBaseUrl') . 'cake.icon.png',
+        'cake_icon2.png' => ['file' => Configure::read('App.imageBaseUrl') . 'cake.icon.png'],
+        WWW_ROOT . 'favicon.ico'
+    ])
+    ->setSubject('Email from CakePHP Elastic Email plugin')
+    ->send('Message from CakePHP Elastic Email plugin');
+```
+
+> You need to have some credit in your account to send attachments. Otherwise you will get `Not enough credit for campaign.` error.
 
 ### Template
 You can use the template created in Elastic Email backend. Get the template id by either using their API or from the URL.
