@@ -158,6 +158,59 @@ class ElasticEmailTransportTest extends TestCase
         $this->assertEquals('to@example.com;', $emailParams['to']);
     }
 
+    public function testAttachments()
+    {
+        Email::dropTransport('elasticemail');
+        Email::setConfigTransport(
+            'elasticemail',
+            [
+                'className' => 'ElasticEmail.ElasticEmail',
+                'apiKey' => '123'
+            ]
+        );
+
+        $email = new Email();
+        $email->setProfile(['transport' => 'elasticemail']);
+        $res = $email->setFrom(['from@example.com' => 'CakePHP Elastic Email'])
+            ->setSender(['from@example.com' => 'CakePHP Elastic Email'])
+            ->setTo('to@example.com')
+            ->setEmailFormat('both')
+            ->setSubject('Email from CakePHP Elastic Email plugin')
+            ->setAttachments([
+                'logo.png' => TESTS . DS . 'assets' . DS . 'logo.png'
+            ])
+            ->send('Hello there, <br> This is an email from CakePHP Elastic Email plugin.');
+
+        $emailParams = $res['emailParams'];
+        $this->assertArrayHasKey('file_logopng', $emailParams);
+    }
+
+    public function testCustomHeaders()
+    {
+        Email::dropTransport('elasticemail');
+        Email::setConfigTransport(
+            'elasticemail',
+            [
+                'className' => 'ElasticEmail.ElasticEmail',
+                'apiKey' => '123'
+            ]
+        );
+
+        $email = new Email();
+        $email->setProfile(['transport' => 'elasticemail']);
+        $res = $email->setFrom(['from@example.com' => 'CakePHP Elastic Email'])
+            ->setSender(['from@example.com' => 'CakePHP Elastic Email'])
+            ->setTo('to@example.com')
+            ->setEmailFormat('both')
+            ->setSubject('Email from CakePHP Elastic Email plugin')
+            ->setHeaders(['X-Custom' => 'headervalue'])
+            ->send('Hello there, <br> This is an email from CakePHP Elastic Email plugin.');
+
+        $emailParams = $res['emailParams'];
+        $this->assertArrayHasKey('headers_xcustom', $emailParams);
+        $this->assertEquals('X-Custom: headervalue', $emailParams['headers_xcustom']);
+    }
+
     public function testMissingApiKey()
     {
         $this->expectException('ElasticEmail\Mailer\Exception\MissingElasticEmailApiKeyException');
