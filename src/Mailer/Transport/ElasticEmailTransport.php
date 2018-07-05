@@ -83,7 +83,7 @@ class ElasticEmailTransport extends AbstractTransport
         if (!empty($customHeaders)) {
             foreach ($customHeaders as $header => $value) {
                 if (0 === strpos($header, $this->_customHeaderPrefix) && !empty($value)) {
-                    $this->_emailParams['headers_' . Text::slug(strtolower($header), '')] = $header . ': ' . $value;
+                    $this->_emailParams['headers_' . Text::slug(strtolower($header), ['replacement' => '', 'transliteratorId' => false])] = $header . ': ' . $value;
                 }
             }
         }
@@ -91,7 +91,7 @@ class ElasticEmailTransport extends AbstractTransport
         $attachments = $email->getAttachments();
         if (!empty($attachments)) {
             foreach ($attachments as $name => $file) {
-                $this->_emailParams['files_' . Text::slug(strtolower($name), '')] = fopen($file['file'], 'r');
+                $this->_emailParams['file_' . Text::slug(strtolower($name), ['replacement' => '', 'transliteratorId' => false])] = fopen($file['file'], 'r');
             }
         }
 
