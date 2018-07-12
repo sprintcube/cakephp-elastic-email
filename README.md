@@ -70,7 +70,7 @@ And create new delivery profile in `Email` settings.
 
 ## Usage
 
-You can now simply use the CakePHP `Email` to send an email via Mailgun.
+You can now simply use the CakePHP `Email` to send an email via Elastic Email.
 
 ```php
 $email = new Email('elasticemail');
