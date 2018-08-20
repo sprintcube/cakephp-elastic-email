@@ -10,8 +10,8 @@
     ],
     "authors": [
         {
-            "name": "PNG Labz",
-            "homepage": "https://www.pnglabz.com",
+            "name": "SprintCube",
+            "homepage": "https://www.sprintcube.com",
             "role": "Author"
         },
         {
@@ -21,12 +21,12 @@
         },
         {
             "name": "Community",
-            "homepage": "https://github.com/pnglabz/cakephp-rest/graphs/contributors"
+            "homepage": "https://github.com/sprintcube/cakephp-rest/graphs/contributors"
         }
     ],
     "support": {
-        "source": "https://github.com/pnglabz/cakephp-elastic-email",
-        "issues": "https://github.com/pnglabz/cakephp-elastic-email/issues"
+        "source": "https://github.com/sprintcube/cakephp-elastic-email",
+        "issues": "https://github.com/sprintcube/cakephp-elastic-email/issues"
     },
     "require": {
         "php": ">=5.6.0",
