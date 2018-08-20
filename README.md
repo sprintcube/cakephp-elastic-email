@@ -1,10 +1,10 @@
 # Elastic Email Plugin for CakePHP 3
 
-[![Build Status](https://travis-ci.org/pnglabz/cakephp-elastic-email.svg?branch=master)](https://travis-ci.org/pnglabz/cakephp-elastic-email)
-[![codecov](https://codecov.io/gh/pnglabz/cakephp-elastic-email/branch/master/graph/badge.svg)](https://codecov.io/gh/pnglabz/cakephp-elastic-email)
+[![Build Status](https://travis-ci.org/sprintcube/cakephp-elastic-email.svg?branch=master)](https://travis-ci.org/sprintcube/cakephp-elastic-email)
+[![codecov](https://codecov.io/gh/sprintcube/cakephp-elastic-email/branch/master/graph/badge.svg)](https://codecov.io/gh/sprintcube/cakephp-elastic-email)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
-[![Latest Stable Version](https://poser.pugx.org/pnglabz/cakephp-elastic-email/v/stable)](https://packagist.org/packages/pnglabz/cakephp-elastic-email)
-[![Total Downloads](https://poser.pugx.org/pnglabz/cakephp-elastic-email/downloads)](https://packagist.org/packages/pnglabz/cakephp-elastic-email)
+[![Latest Stable Version](https://poser.pugx.org/sprintcube/cakephp-elastic-email/v/stable)](https://packagist.org/packages/sprintcube/cakephp-elastic-email)
+[![Total Downloads](https://poser.pugx.org/sprintcube/cakephp-elastic-email/downloads)](https://packagist.org/packages/sprintcube/cakephp-elastic-email)
 
 This plugin provides email delivery using [Elastic Email](https://elasticemail.com/).
 
@@ -20,7 +20,7 @@ This plugin has the following requirements:
 You can install this plugin into your CakePHP application using [composer](http://getcomposer.org).
 
 ```
-composer require pnglabz/cakephp-elastic-email
+composer require sprintcube/cakephp-elastic-email
 ```
 
 After installation, [Load the plugin](http://book.cakephp.org/3.0/en/plugins.html#loading-a-plugin)
@@ -184,4 +184,4 @@ $email->send();
 
 ## Reporting Issues
 
-If you have a problem with this plugin or any bug, please open an issue on [GitHub](https://github.com/pnglabz/cakephp-elastic-email/issues).
+If you have a problem with this plugin or any bug, please open an issue on [GitHub](https://github.com/sprintcube/cakephp-elastic-email/issues).
