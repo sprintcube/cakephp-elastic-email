@@ -1,5 +1,5 @@
 {
-    "name": "pnglabz/cakephp-elastic-email",
+    "name": "sprintcube/cakephp-elastic-email",
     "description": "ElasticEmail plugin for CakePHP 3 - Send transactional emails using Elastic Email API",
     "type": "cakephp-plugin",
     "license": "MIT",
